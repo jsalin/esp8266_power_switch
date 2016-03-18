@@ -1,0 +1,9 @@
+#define SSID "my_ap"
+#define PASSWORD "my_key"
+#define HTTP_HOST "www.webserver.com"
+#define HTTP_PORT 80
+#define HTTP_PATH "/power.txt"
+#define PIN_POWER_ON 4
+#define PIN_POWER_OFF 5
+#define WIFI_POLLING_INTERVAL 1000
+#define HTTP_POLLING_INTERVAL 60000
