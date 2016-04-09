@@ -32,3 +32,5 @@ Software
 --------
 
 Firmware has a hard coded URL and SSID + KEY configured in a include file. They are used to fetch content "true" or "false" which determines what action to take. Controlling is done by simply changing content of the file on a web server of choice. This kind of polling client approach is useful when the switch is located behind a NAT.
+
+To use the board in Arduino, you have to install support for it adding following URL in Preferences and then installing esp8266 in Boards Manager: http://arduino.esp8266.com/stable/package_esp8266com_index.json
