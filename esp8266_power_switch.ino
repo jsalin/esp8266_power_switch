@@ -25,14 +25,28 @@
 #define LED_OK    0     // Full brightness when HTTP control is OK
 #define LED_WIFI  991   // Dimmer light when only WIFI is OK
 #define LED_OFF   1023  // Off otherwise
-
 /**
  * Set power on or off, based on the parameter.
  */
 void power_control(bool value)
 {
-  Serial.print("Turning power to state: ");
-  Serial.println(value);
+#ifdef DIRECT_RELAY
+
+  
+  if (value == true)
+  {
+    Serial.println("Turning power on");
+    pinMode(PIN_RELAY, OUTPUT);
+    digitalWrite(PIN_RELAY, HIGH);
+  }
+  else
+  {
+    Serial.println("Turning power off");
+    pinMode(PIN_RELAY, INPUT);
+    digitalWrite(PIN_RELAY, LOW);
+  }
+    
+#else
 
   // Choose GPIO pin - if to turn power on or off
   int pin = PIN_POWER_OFF;
@@ -55,6 +69,8 @@ void power_control(bool value)
 
   pinMode(PIN_POWER_ON, INPUT);
   pinMode(PIN_POWER_OFF, INPUT);
+  
+#endif
 }
 
 /**
@@ -107,7 +123,7 @@ void loop()
   url += HTTP_PORT;
   url += HTTP_PATH;
 
-  Serial.print("Connected, fetching ");
+  Serial.print("Fetching ");
   Serial.println(url);
 
   String request = "GET ";
